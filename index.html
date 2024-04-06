@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Massage</title>
+    <style>
+        body {
+            background-image: url(./partyBg.webp);
+            background-attachment: fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        .img {
+            background-image: url(./linesBg.jpg);
+            background-attachment: fixed;
+            padding: 10px;
+            border-radius: 0 0 50px 50px;
+        }
+        form {
+            width: 300px;
+            height: 50px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+            margin: 50px auto;
+        }
+        form input:nth-child(1) {
+            width: 200px;
+            border: none;
+            outline: none;
+            background-color: #ddd;
+        }
+        form input:nth-child(2) {
+            border-radius: 20px;
+            background-color: #eee;
+            padding: 5px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .msg {
+            font-size: 40px;
+            font-weight: bold;
+            font-style: italic;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        .link {
+            position: absolute;
+            bottom: 0;
+            margin: 20px;
+            padding: 10px;
+            font-family: sans-serif;
+            background-color: #ddd;
+            border-radius: 10px;
+            & a {
+                color: blue;
+            }
+        }
+        .emoji span {
+            position: absolute;
+            font-size: 100px;
+            margin: 50px;
+            cursor: default;
+            animation-name: rotate;
+            animation-duration: 0.7s;
+            animation-iteration-count: infinite;
+            &:nth-child(1) {
+                bottom: 0;
+                right: 0;
+                animation-delay: 0.35s;
+            }
+        }
+        @keyframes rotate {
+            0% {
+                transform: rotate(0);
+            }
+            50% {
+                transform: rotate(15deg);
+            }
+            100% {
+                transform: rotate(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="img">
+        <form action="" name="n" method="get">
+            <input type="text" name="n" placeholder="type a name" autocomplete="off">
+            <input type="submit" value="Send">
+        </form>
+    </div>
+    <div class="msg"></div>
+    <div class="emoji">
+        <span>&#127874;</span> <!-- cake -->
+        <span>&#127880;</span> <!-- balloon -->
+    </div>
+    <script>
+        let name = "Name";
+        if (location.href.includes("?n=")) {
+            name = location.href.split("?n=")[1].replaceAll("+", " ");
+        } else if (localStorage.getItem("name")) {
+            name = localStorage.getItem("name");
+        }
+        localStorage.setItem("name", name);
+        
+        let form = document.querySelector("form");
+        let letters = [..."abcdefghijklmnopqrstuvwxyz0123456789"];
+        form.addEventListener("submit", function (e) {
+            let valid = false;
+            letters.some(function (letter) {
+                if (form.children[0].value.toLowerCase().includes(letter || letter)) {
+                    valid = true;
+                }
+            });
+            if (valid == false) {
+                e.preventDefault();
+            }
+        });
+
+        console.log(name);
+        let div = document.querySelector(".msg");
+        div.append(`Happy Birthday ${name}!`);
+
+        document.write(`
+            <div class="link">
+                <span>Share : </span>
+                <a href="${location.href}" target="_blank">&#128206; ${location.href}</a>    
+            </div>
+        `);
+    </script>
+</body>
+</html>
