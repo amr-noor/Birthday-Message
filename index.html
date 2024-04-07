@@ -50,6 +50,8 @@
             left: 50%;
             transform: translateX(-50%);
             background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            padding: 10px;
         }
         .link {
             position: absolute;
@@ -57,7 +59,7 @@
             margin: 20px;
             padding: 10px;
             font-family: sans-serif;
-            background-color: #ddd;
+            background-color: #dddddd80;
             border-radius: 10px;
             & a {
                 color: blue;
@@ -88,6 +90,21 @@
                 transform: rotate(0);
             }
         }
+        @media (max-width: 767px) {
+            body {
+                background-image: none;
+                background: linear-gradient(blue, lightblue);
+                background-attachment: fixed;
+                background-size: cover;
+            }
+            .emoji span {
+                font-size: 60px;
+            }
+            .msg {
+                font-size: 30px;
+                background-color: rgb(255 255 255 / 0.3);
+            }
+        }
     </style>
 </head>
 <body>
@@ -112,16 +129,17 @@
         localStorage.setItem("name", name);
         
         let form = document.querySelector("form");
-        let letters = [..."abcdefghijklmnopqrstuvwxyz0123456789"];
         form.addEventListener("submit", function (e) {
-            let valid = false;
-            letters.some(function (letter) {
-                if (form.children[0].value.toLowerCase().includes(letter || letter)) {
-                    valid = true;
-                }
-            });
-            if (valid == false) {
+            if (form.children[0].value == "") {
                 e.preventDefault();
+            }
+        });
+        form.children[0].addEventListener('input', function(e) {
+            let inputValue = e.target.value;
+            let pattern = /^[a-zA-Z0-9\s]*$/;
+            if (!pattern.test(inputValue)) {
+                let sanitizedValue = inputValue.replace(/[^a-zA-Z0-9\s]/g, '');
+                form.children[0].value = sanitizedValue;
             }
         });
 
@@ -135,13 +153,6 @@
                 <a href="${location.href}" target="_blank">&#128206; ${location.href}</a>    
             </div>
         `);
-
-        /*
-        updates:
-            invalid value including "%"
-            cursor not-allowed for submit btn until writing invalid value
-            form input informations while hover
-        */
     </script>
 </body>
 </html>
