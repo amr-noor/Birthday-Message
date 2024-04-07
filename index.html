@@ -118,7 +118,9 @@
             letters.some(function (letter) {
                 if (form.children[0].value.toLowerCase().includes(letter || letter)) {
                     valid = true;
-                }
+                } /* else if (location.href.includes("%")) {
+                    valid = false;
+                } */
             });
             if (valid == false) {
                 e.preventDefault();
