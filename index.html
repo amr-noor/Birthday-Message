@@ -54,7 +54,10 @@
             padding: 10px;
         }
         .link {
-            position: absolute;
+            position: fixed;
+            width: min-content;
+            max-width: 350px;
+            overflow: hidden;
             bottom: 0;
             margin: 20px;
             padding: 10px;
@@ -103,6 +106,10 @@
             .msg {
                 font-size: 30px;
                 background-color: rgb(255 255 255 / 0.3);
+                width: min-content;
+                max-width: 400px;
+                height: 100px;
+                overflow: scroll;
             }
         }
     </style>
