@@ -97,11 +97,11 @@
             <input type="submit" value="Send">
         </form>
     </div>
-    <div class="msg"></div>
     <div class="emoji">
         <span>&#127874;</span> <!-- cake -->
         <span>&#127880;</span> <!-- balloon -->
     </div>
+    <div class="msg"></div>
     <script>
         let name = "Name";
         if (location.href.includes("?n=")) {
@@ -118,9 +118,7 @@
             letters.some(function (letter) {
                 if (form.children[0].value.toLowerCase().includes(letter || letter)) {
                     valid = true;
-                } /* else if (location.href.includes("%")) {
-                    valid = false;
-                } */
+                }
             });
             if (valid == false) {
                 e.preventDefault();
@@ -137,6 +135,13 @@
                 <a href="${location.href}" target="_blank">&#128206; ${location.href}</a>    
             </div>
         `);
+
+        /*
+        updates:
+            invalid value including "%"
+            cursor not-allowed for submit btn until writing invalid value
+            form input informations while hover
+        */
     </script>
 </body>
 </html>
