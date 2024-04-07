@@ -55,8 +55,7 @@
         }
         .link {
             position: fixed;
-            width: min-content;
-            max-width: 350px;
+            max-width: 400px;
             overflow: hidden;
             bottom: 0;
             margin: 20px;
@@ -106,17 +105,19 @@
             .msg {
                 font-size: 30px;
                 background-color: rgb(255 255 255 / 0.3);
-                width: min-content;
-                max-width: 400px;
+                max-width: 300px;
                 height: 100px;
                 overflow: scroll;
+            }
+            .link {
+                max-width: 260px;
             }
         }
     </style>
 </head>
 <body>
     <div class="img">
-        <form action="" name="n" method="get">
+        <form action="" method="get">
             <input type="text" name="n" placeholder="type a name" autocomplete="off">
             <input type="submit" value="Send">
         </form>
@@ -143,8 +144,7 @@
         });
         form.children[0].addEventListener('input', function(e) {
             let inputValue = e.target.value;
-            let pattern = /^[a-zA-Z0-9\s]*$/;
-            if (!pattern.test(inputValue)) {
+            if (!/^[a-zA-Z0-9\s]*$/.test(inputValue)) {
                 let sanitizedValue = inputValue.replace(/[^a-zA-Z0-9\s]/g, '');
                 form.children[0].value = sanitizedValue;
             }
