@@ -92,6 +92,11 @@
                 transform: rotate(0);
             }
         }
+        @media (max-width: 320px) {
+            .link {
+                max-width: 260px;
+            }
+        }
         @media (max-width: 767px) {
             body {
                 background-image: none;
@@ -109,15 +114,12 @@
                 height: 100px;
                 overflow: scroll;
             }
-            .link {
-                max-width: 260px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="img">
-        <form action="" method="get">
+        <form method="get">
             <input type="text" name="n" placeholder="type a name" autocomplete="off">
             <input type="submit" value="Send">
         </form>
@@ -150,7 +152,6 @@
             }
         });
 
-        console.log(name);
         let div = document.querySelector(".msg");
         div.append(`Happy Birthday ${name}!`);
 
