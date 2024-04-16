@@ -99,8 +99,6 @@
         }
         @media (max-width: 767px) {
             body {
-                background-image: none;
-                /* background: linear-gradient(blue, lightblue); */
                 background-image: url(bg.jpg);
                 background-attachment: fixed;
                 background-size: cover;
@@ -149,11 +147,9 @@
                 e.preventDefault();
             }
         });
-        form.children[0].addEventListener('input', function(e) {
-            let inputValue = e.target.value;
-            if (!/^[a-zA-Z0-9\s]*$/.test(inputValue)) {
-                let sanitizedValue = inputValue.replace(/[^a-zA-Z0-9\s]/g, '');
-                form.children[0].value = sanitizedValue;
+        form.children[0].addEventListener('input', e => {
+            if (!/^[a-zA-Z0-9\s]*$/.test(e.target.value)) {
+                form.children[0].value = e.target.value.replace(/[^a-zA-Z0-9\s]/g, '');;
             }
         });
 
