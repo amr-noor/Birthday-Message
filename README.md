@@ -1,2 +1,2 @@
-# Brithday-Massage
-send a brithday massage
+# Brithday-Message
+send a brithday message
